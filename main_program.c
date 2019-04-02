@@ -13,7 +13,7 @@ int main () {
     printf ("6) Decryption using substitution cipher without alphabet substitution\n");
     printf ("Selection: ");
     
-    scanf ("%d", &selec); 
+  //  scanf ("%d", &selec); 
     
   /*  switch (selec) {
         case 1: 
