@@ -22,7 +22,7 @@ int main () {
             printf ("enter text:");
             printf ("\nplain text: H");
             
-          /*  char plainTextOne[]= "H";
+         /*  char plainTextOne[]= "H";
             char cipherTextOne;
             int keyOne = 4; //the amount rotated by, hard coded to be 4 for now 
             
