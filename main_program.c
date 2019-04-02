@@ -13,19 +13,24 @@ int main () {
     printf ("6) Decryption using substitution cipher without alphabet substitution\n");
     printf ("Selection: ");
     
-    scanf ("%d", &selec); 
+    //scanf ("%d", &selec); 
     
-    switch (selec) {
+  /*  switch (selec) {
         case 1: 
-            printf ("selected 1");
+            printf ("\nselected 1\n");
             
-           // printf ("enter text");
-       //     printf ("plain text: hello")
+            printf ("enter text:");
+            printf ("\nplain text: H");
             
-       //     char plainTextOne[]= "hello" 
-          //  int keyOne
+            char plainTextOne[]= "H";
+            char cipherTextOne;
+            int keyOne = 4; //the amount rotated by, hard coded to be 4 for now 
             
-//            printf ("cipher text: %s" s)
+            plainTextOne = plainTextOne - 65; //converting letter to ASCII numberal- A=0, B=1, C=2, ... , Z=25
+            cipherTextOne = plainTextOne + keyOne; //applying the key to the plain text
+            cipherTextOne = cipherTextOne + 65;//converting from ASCII numeral A=0 back to real value
+            
+            printf ("cipher text: %s", cipherTextOne);
             break; 
         case 2: 
             printf ("selected 2");
@@ -44,6 +49,6 @@ int main () {
             break;
         default: 
             printf ("\nunknown option");
-    }
+    }*/
     
     }
