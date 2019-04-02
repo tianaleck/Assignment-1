@@ -14,6 +14,7 @@ int main () {
     printf ("Selection: ");
     
     scanf ("%d", &selec); 
+    // create switch case
     
   /*  switch (selec) {
         case 1: 
