@@ -22,15 +22,6 @@ int main () {
             printf ("enter text:");
             printf ("\nplain text: H");
             
-         /*  char plainTextOne[]= "H";
-            char cipherTextOne;
-            int keyOne = 4; //the amount rotated by, hard coded to be 4 for now 
-            
-            plainTextOne = plainTextOne - 65; //converting letter to ASCII numberal- A=0, B=1, C=2, ... , Z=25
-            cipherTextOne = plainTextOne + keyOne; //applying the key to the plain text
-            cipherTextOne = cipherTextOne + 65;//converting from ASCII numeral A=0 back to real value
-            
-            printf ("cipher text: %s", cipherTextOne);  */
             break; 
         case 2: 
             printf ("selected 2");
