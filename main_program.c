@@ -34,7 +34,7 @@ int main () {
                 {
                     break;
                 }
-                
+                c = c + (4);
                 printf("%c", c); //printing the character to the console
 
             }
