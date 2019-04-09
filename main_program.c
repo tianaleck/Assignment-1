@@ -16,12 +16,16 @@ int main () {
   //  scanf ("%d", &selec); 
 
     switch (selec) {
-        case 1: 
-            printf ("\nselected 1\n");
+        case 1: //rotation encryption using a key
+            
+            printf ("\nSelected 1- Rotation encryption with key.\n");
+            printf ("Enter rotation key: ");
+            int keyOne=0;
+            scanf ("%d", &keyOne);
             
             FILE *input; //linking (?) to the file 
             input = fopen("practice", "r");
-            if(input == NULL)
+            if(input == NULL) //if the file cannot be opened
             {
                 printf("FAILED TO OPEN FILE\n");
                 return -1;
@@ -30,14 +34,18 @@ int main () {
             while (1) { //while the file isnt at the end 
                 
                 fscanf(input, "%c", &c); //reading the character from the file
-                if(feof(input)== 1)
+                if(feof(input)== 1) //when the file is finished, exit the loop 
                 {
                     break;
                 }
-                c = c + (4);
-                printf("%c", c); //printing the character to the console
+                
+                c = c + keyOne; //using the translation key to shift numbers (currently hardcoded)
 
+                printf("%c", c); //printing the character to the console
             }
+
+            
+            printf ("\n");
             break; 
         case 2: 
             printf ("selected 2");
