@@ -19,9 +19,25 @@ int main () {
         case 1: 
             printf ("\nselected 1\n");
             
-            printf ("enter text:");
-            printf ("\nplain text: H");
-            
+            FILE *input; //linking (?) to the file 
+            input = fopen("practice", "r");
+            if(input == NULL)
+            {
+                printf("FAILED TO OPEN FILE\n");
+                return -1;
+            }
+            char c;
+            while (1) { //while the file isnt at the end 
+                
+                fscanf(input, "%c", &c); //reading the character from the file
+                if(feof(input)== 1)
+                {
+                    break;
+                }
+                
+                printf("%c", c); //printing the character to the console
+
+            }
             break; 
         case 2: 
             printf ("selected 2");
