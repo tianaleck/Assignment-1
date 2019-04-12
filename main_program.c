@@ -1,5 +1,7 @@
 #include <stdio.h> 
 
+char rotationOne(char c, int keyOne); //function for task 1- rotation encryption using key
+
 int main () {
     
     int selec = 1; //the first chosen option - hard coded to select 1 for now
@@ -14,15 +16,18 @@ int main () {
     printf ("Selection: ");
 
   //  scanf ("%d", &selec); 
+  
+    
+  
 
     switch (selec) {
         case 1: //rotation encryption using a key
             
             printf ("\nSelected 1- Rotation encryption with key.\n");
             printf ("Enter rotation key: ");
-            int keyOne=0;
-            scanf ("%d", &keyOne);
-            
+            int keyOne=0; //rotation key initialisation
+            scanf ("%d", &keyOne); 
+
             FILE *input; //linking (?) to the file 
             input = fopen("practice", "r");
             if(input == NULL) //if the file cannot be opened
@@ -30,19 +35,37 @@ int main () {
                 printf("FAILED TO OPEN FILE\n");
                 return -1;
             }
-            char c;
+            char c, e;
+        
             while (1) { //while the file isnt at the end 
                 
                 fscanf(input, "%c", &c); //reading the character from the file
+                
                 if(feof(input)== 1) //when the file is finished, exit the loop 
                 {
                     break;
                 }
-                
-                c = c + keyOne; //using the translation key to shift numbers (currently hardcoded)
+                else if (c==' ')  //if the letter is a space, print as is
+                {
+                    printf ("%c", c);
+                }
+           /*     else if ((c+keyOne)>90) //if the letter is encrypted to punctuation
+                {
+                    e = (c + keyOne) - 26;
+                    printf ("%c", e);
+                } */
+                else 
+                {
+                   e = rotationOne(c, keyOne);
+                   printf ("%c", e);
+                   
+                //    c = c + keyOne; //using the translation key to shift numbers 
+                //    printf("%c", c); //printing the character to the console
+                }
 
-                printf("%c", c); //printing the character to the console
+
             }
+            
 
             
             printf ("\n");
@@ -67,3 +90,9 @@ int main () {
     }
     
     }
+    
+   char rotationOne(char c, int keyOne)  //function not working- isnt translating 
+    {
+        c = c + keyOne;
+        return c;
+    } 
