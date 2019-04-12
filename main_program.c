@@ -45,7 +45,11 @@ int main () {
                 {
                     break;
                 }
-                else if (c==' ')  //if the letter is a space, print as is
+                else if (c<65)  //if the letter is a space, print as is
+                {
+                    printf ("%c", c);
+                }
+                else if (c>90)
                 {
                     printf ("%c", c);
                 }
