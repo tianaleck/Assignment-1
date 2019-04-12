@@ -35,7 +35,7 @@ int main () {
                 printf("FAILED TO OPEN FILE\n");
                 return -1;
             }
-            char c, e;
+            char c, d, e;
         
             while (1) { //while the file isnt at the end 
                 
@@ -49,18 +49,16 @@ int main () {
                 {
                     printf ("%c", c);
                 }
-           /*     else if ((c+keyOne)>90) //if the letter is encrypted to punctuation
+                else if ((c+keyOne)>90) //if the letter is encrypted to punctuation
                 {
-                    e = (c + keyOne) - 26;
-                    printf ("%c", e);
-                } */
+                    d = (c + keyOne) - 26;
+                    printf ("%c", d);
+                } 
                 else 
                 {
                    e = rotationOne(c, keyOne);
                    printf ("%c", e);
-                   
-                //    c = c + keyOne; //using the translation key to shift numbers 
-                //    printf("%c", c); //printing the character to the console
+
                 }
 
 
