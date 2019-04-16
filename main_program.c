@@ -78,7 +78,7 @@ int main () {
         case 2: 
             printf ("\nSelected 2- Rotation decryption with key. \n");
             printf ("Enter rotation key: ");
-            int keyTwo;
+            int keyTwo=0;
             scanf ("%d", &keyTwo);
         
             FILE *input2; //opening file
@@ -100,20 +100,20 @@ int main () {
                 {
                     break;
                 }
-                else if (c<65)
+                else if (f<65) //if the char is not a letter 
+                {
+                    printf ("%c", f); //something wrong with this one
+                }
+                else if (f>90) //if the char is not a letter
                 {
                     printf ("%c", f);
                 }
-                else if (c>90)
-                {
-                    printf ("%c", f);
-                }
-                else if ((c+keyTwo)<65)
+                else if ((f+keyTwo)<65) //if decrypted char is not a letter
                 {
                     g = (f + keyTwo) + 26;
                     printf ("%c", g);
                 }
-                else if ((c+keyTwo)>90)
+                else if ((f+keyTwo)>90) //if decrypted char is not a letter
                 {
                     g = (f + keyTwo) - 26;
                     printf ("%c", g);
@@ -122,7 +122,7 @@ int main () {
                 {
                     h = rotationTwo(f, keyTwo); 
                     printf ("%c", h);
-                }
+                } 
             }
             printf ("\n");
             break; 
