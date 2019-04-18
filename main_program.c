@@ -5,7 +5,7 @@ char rotationTwo(char f, int keyTwo); //function for tast 2- rotation decryption
 
 int main () {
     
-    int selec = 2; //the first chosen option - hard coded to select 1 for now
+    int selec = 3; //the first chosen option - hard coded to select 1 for now
    
     printf ("Select an Option:\n"); //user interface to select what task should be performed 
     printf ("1) Encryption using rotation cipher given rotation amount\n");
@@ -30,7 +30,7 @@ int main () {
             scanf ("%d", &keyOne); 
 
             FILE *input1; //linking (?) to the file 
-            input1 = fopen("practice1", "r");
+            input1 = fopen("task1", "r");
             if(input1 == NULL) //if the file cannot be opened
             {
                 printf("FAILED TO OPEN FILE\n");
@@ -79,10 +79,10 @@ int main () {
             printf ("\nSelected 2- Rotation decryption with key. \n");
             printf ("Enter rotation key: ");
             int keyTwo=0;
-            scanf ("%d", &keyTwo);
+            scanf ("%d", &keyTwo); //reading key value from terminal
         
             FILE *input2; //opening file
-            input2 = fopen("practice2", "r"); //reading file
+            input2 = fopen("task2", "r"); //reading file
             
             if (input2 == NULL) //if the file cannot be opened due to error
             {
@@ -94,7 +94,7 @@ int main () {
             
             while (1) 
             {
-                fscanf(input2, "%c", &f);
+                fscanf(input2, "%c", &f); //reading the characters from file
                 
                 if (feof(input2)==1) //if the file is finished
                 {
@@ -108,19 +108,19 @@ int main () {
                 {
                     printf ("%c", f);
                 }
-                else if ((f+keyTwo)<65) //if decrypted char is not a letter
+                else if ((f-keyTwo)<65) //if decrypted char is not a letter within range
                 {
-                    g = (f + keyTwo) + 26;
+                    g = (f - keyTwo) + 26;
                     printf ("%c", g);
                 }
-                else if ((f+keyTwo)>90) //if decrypted char is not a letter
+                else if ((f-keyTwo)>90) //if decrypted char is not a letter within range
                 {
-                    g = (f + keyTwo) - 26;
+                    g = (f - keyTwo) - 26;
                     printf ("%c", g);
                 }
                 else 
                 {
-                    h = rotationTwo(f, keyTwo); 
+                    h = rotationTwo(f, keyTwo); //using function to decrypt
                     printf ("%c", h);
                 } 
             }
@@ -128,7 +128,49 @@ int main () {
             break; 
             
         case 3: 
-            printf ("selected 3");
+            printf ("\nSelected 3- Substitution encryption given a key\n");
+            
+            FILE *input3;
+            input3 = fopen("task3", "r");
+            if (input3 == NULL)
+            {
+                printf("FAILED TO OPEN FILE\n");
+                return -1;
+            }
+            
+            FILE *input4;
+            input4 = fopen("task3key", "r");
+            
+            if (input4 == NULL)
+            {
+                printf("FAILED TO OPEN KEY FILE\n");
+                return -1;
+            }
+            
+            char i, j, k;
+            
+            while (1) 
+            {
+                fscanf (input3, "%c", &i);
+                
+                if (feof(input3)==1) 
+                {
+                    break;
+                }
+                else if (i<65)
+                {
+                    printf ( "%c", i);
+                }
+                else if (i>90)
+                {
+                    printf ("%c", i);
+                }
+                else
+                {
+                    printf ("%c", i);
+                    //create a function which reads new file
+                }
+            }
             break; 
             
         case 4: 
