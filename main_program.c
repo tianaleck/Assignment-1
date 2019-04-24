@@ -1,9 +1,10 @@
-#include <stdio.h> 
+ #include <stdio.h> 
 
 char rotationOne(char c, int keyOne); //function for task 1- rotation encryption using key
 char rotationTwo(char f, int keyTwo); //function for tast 2- rotation decryption using key
+char subcipher(char i, char j); //function for task 3- substitution encryption using key
 
-int main () {
+int main () { 
     
     int selec = 3; //the first chosen option - hard coded to select 1 for now
    
@@ -21,7 +22,8 @@ int main () {
     
   
 
-    switch (selec) {
+    switch (selec) 
+    {
         case 1: //rotation encryption using a key
             
             printf ("\nSelected 1- Rotation encryption with key.\n");
@@ -138,16 +140,8 @@ int main () {
                 return -1;
             }
             
-            FILE *input4;
-            input4 = fopen("task3key", "r");
-            
-            if (input4 == NULL)
-            {
-                printf("FAILED TO OPEN KEY FILE\n");
-                return -1;
-            }
-            
-            char i, j, k;
+         
+            char i, j;
             
             while (1) 
             {
@@ -167,14 +161,14 @@ int main () {
                 }
                 else
                 {
-                    printf ("%c", i);
-                    //create a function which reads new file
+                    j = subcipher(i,j);
+                    printf ("%c", j);
                 }
             }
             break; 
             
         case 4: 
-            printf ("seleced 4");
+            printf ("selected 4");
             break; 
             
         case 5:
@@ -202,4 +196,93 @@ int main () {
         f = f - keyTwo;
         return f;
     }
+    
+    char subcipher(char i, char j)
+    {
+         switch (i)
+        {
+            case 'A':
+                i = 'Q';
+                break;
+            case 'B':
+                i = 'W';
+                break;
+            case 'C':
+                i = 'E';
+                break;
+            case 'D':
+                i = 'R';
+                break;
+            case 'E':
+                i = 'T';
+                break;
+            case 'F':
+                i = 'Y';
+                break;
+            case 'G':
+                i = 'U';
+                break;
+            case 'H':
+                i = 'I';
+                break;
+            case 'I':
+                i = 'O';
+                break;
+            case 'J':
+                i = 'P';
+                break;
+            case 'K':
+                i = 'A';
+            case 'L':
+                i = 'S';
+                break;
+            case 'M':
+                i = 'D';
+                break;
+            case 'N':
+                i = 'F';
+                break;
+            case 'O':
+                i = 'G';
+                break;
+            case 'P':
+                i = 'H';
+                break;
+            case 'Q':
+                i = 'J';
+                break;
+            case 'R':
+                i = 'K';
+                break;
+            case 'S':
+                i = 'L';
+                break;
+            case 'T':
+                i = 'Z';
+                break;
+            case 'U':
+                i = 'X';
+                break;
+            case 'V':
+                i = 'C';
+                break;
+            case 'W':
+                i = 'V';
+                break;
+            case 'X':
+                i = 'B';
+                break;
+            case 'Y':
+                i = 'N';
+                break;
+            case 'Z':
+                i = 'M';
+                break;
+            return i;
+        }
+
+                return i;
+        } 
+
+    
  
