@@ -7,7 +7,7 @@ char subcipherDec(char j, char l); //funcion for task 4- substitution decryption
 
 int main () { 
     
-    int selec = 4; //the first chosen option - hard coded to select 1 for now
+    int selec; //the first chosen option - hard coded to select 1 for now
    
     printf ("Select an Option:\n"); //user interface to select what task should be performed 
     printf ("1) Encryption using rotation cipher given rotation amount\n");
@@ -18,7 +18,7 @@ int main () {
     //printf ("6) Decryption using substitution cipher without alphabet substitution\n");
     printf ("Selection: ");
 
-  //  scanf ("%d", &selec); 
+    scanf ("%d", &selec); 
   
     
   
@@ -202,14 +202,16 @@ int main () {
                     l = subcipherDec(k,l);
                     printf ("%c", l);
                 } 
+            }
+
             printf ("\n");
             break; 
             
         default: 
-            printf ("\nunknown option");
-            }
-    } //closing switch case
+            printf ("\nunknown option\n");
+            } //closing switch case
             } //closing int main
+            
 
     char rotationOne(char c, int keyOne)   
     {
