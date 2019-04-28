@@ -1,20 +1,21 @@
- #include <stdio.h> 
+#include <stdio.h> 
 
 char rotationOne(char c, int keyOne); //function for task 1- rotation encryption using key
 char rotationTwo(char f, int keyTwo); //function for tast 2- rotation decryption using key
-char subcipher(char i, char j); //function for task 3- substitution encryption using key
+char subcipherEnc(char i, char j); //function for task 3- substitution encryption using key
+char subcipherDec(char j, char l); //funcion for task 4- substitution decryption using key
 
 int main () { 
     
-    int selec = 3; //the first chosen option - hard coded to select 1 for now
+    int selec = 4; //the first chosen option - hard coded to select 1 for now
    
     printf ("Select an Option:\n"); //user interface to select what task should be performed 
     printf ("1) Encryption using rotation cipher given rotation amount\n");
     printf ("2) Decryption using rotation cipher given rotation amount\n");
     printf ("3) Encryption using substitution cipher given alphabet substitution\n");
     printf ("4) Decryption using substitution cipher given alphabet substitution\n");
-    printf ("5) Decryption using rotation cipher without rotation amount\n");
-    printf ("6) Decryption using substitution cipher without alphabet substitution\n");
+    //printf ("5) Decryption using rotation cipher without rotation amount\n");
+    //printf ("6) Decryption using substitution cipher without alphabet substitution\n");
     printf ("Selection: ");
 
   //  scanf ("%d", &selec); 
@@ -44,7 +45,7 @@ int main () {
                 
                 fscanf(input1, "%c", &c); //reading the character from the file
                 
-                if(feof(input1)== 1) //when the file is finished, exit the loop 
+                if(feof(input1)==1) //when the file is finished, exit the loop 
                 {
                     break;
                 }
@@ -57,17 +58,17 @@ int main () {
                     printf ("%c", c);
                 }
                 
-                else if ((c+keyOne)<65)
+                else if ((c+keyOne)<65) //if the char is not a letter (below ASCII 65)
                 {
                     d = (c + keyOne) + 26;
                     printf ("%c", d);
                 }
-                else if ((c+keyOne)>90) //if the letter is encrypted to punctuation
+                else if ((c+keyOne)>90) //if the letter is encrypted to punctuation (outside letter range)
                 {
                     d = (c + keyOne) - 26;
                     printf ("%c", d);
                 } 
-                else 
+                else //only translating capital letters
                 {
                    e = rotationOne(c, keyOne);
                    printf ("%c", e);
@@ -140,7 +141,6 @@ int main () {
                 return -1;
             }
             
-         
             char i, j;
             
             while (1) 
@@ -161,30 +161,56 @@ int main () {
                 }
                 else
                 {
-                    j = subcipher(i,j);
+                    j = subcipherEnc(i,j);
                     printf ("%c", j);
                 }
             }
+            printf ("\n");
             break; 
             
         case 4: 
-            printf ("selected 4");
-            break; 
+            printf ("\nSelected 4- Substitution decryption with key\n");
             
-        case 5:
-            printf ("selected 5");
-            break; 
+            FILE *input4;
+            input4 = fopen("task4", "r");
+            if (input4 == NULL)
+            {
+                printf ("FAILED TO OPEN FILE\n");
+                return -1;
+            }
             
-        case 6:
-            printf ("selected 6");
-            break;
+            char k, l;
+            
+            while (1) 
+            {
+                fscanf (input4, "%c", &k);
+                
+                if (feof(input4)==1) 
+                {
+                    break;
+                }
+                else if (k<65)
+                {
+                    printf ( "%c", k);
+                }
+                else if (k>90)
+                {
+                    printf ("%c", k);
+                }
+                else
+                {
+                    l = subcipherDec(k,l);
+                    printf ("%c", l);
+                } 
+            printf ("\n");
+            break; 
             
         default: 
             printf ("\nunknown option");
-    }
-    
-    }
-    
+            }
+    } //closing switch case
+            } //closing int main
+
     char rotationOne(char c, int keyOne)   
     {
         c = c + keyOne;
@@ -197,7 +223,7 @@ int main () {
         return f;
     }
     
-    char subcipher(char i, char j)
+    char subcipherEnc(char i, char j)
     {
          switch (i)
         {
@@ -233,6 +259,7 @@ int main () {
                 break;
             case 'K':
                 i = 'A';
+                break;
             case 'L':
                 i = 'S';
                 break;
@@ -282,7 +309,93 @@ int main () {
         }
 
                 return i;
-        } 
+        }
+        
+        
+        char subcipherDec(char k, char l)
+    {
+         switch (k)
+        {
+            case 'A':
+                k = 'Q';
+                break;
+            case 'B':
+                k = 'W';
+                break;
+            case 'C':
+                k = 'E';
+                break;
+            case 'D':
+                k = 'R';
+                break;
+            case 'E':
+                k = 'T';
+                break;
+            case 'F':
+                k = 'Y';
+                break;
+            case 'G':
+                k = 'U';
+                break;
+            case 'H':
+                k = 'I';
+                break;
+            case 'I':
+                k = 'O';
+                break;
+            case 'J':
+                k = 'P';
+                break;
+            case 'K':
+                k = 'A';
+                break;
+            case 'L':
+                k = 'S';
+                break;
+            case 'M':
+                k = 'D';
+                break;
+            case 'N':
+                k = 'F';
+                break;
+            case 'O':
+                k = 'G';
+                break;
+            case 'P':
+                k = 'H';
+                break;
+            case 'Q':
+                k = 'J';
+                break;
+            case 'R':
+                k = 'K';
+                break;
+            case 'S':
+                k = 'L';
+                break;
+            case 'T':
+                k = 'Z';
+                break;
+            case 'U':
+                k = 'X';
+                break;
+            case 'V':
+                k = 'C';
+                break;
+            case 'W':
+                k = 'V';
+                break;
+            case 'X':
+                k = 'B';
+                break;
+            case 'Y':
+                k = 'N';
+                break;
+            case 'Z':
+                k = 'M';
+                break;
+            return k;
+        }
 
-    
- 
+                return k;
+        } 
