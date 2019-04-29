@@ -23,41 +23,38 @@ char subcipherDec(char j, char l); //funcion for task 4- substitution decryption
 
 int main () { 
     
-    int selec; //the first chosen option - hard coded to select 1 for now
+    int selec; //declaring the variable which determines task selected 
    
     printf ("Select an Option:\n"); //user interface to select what task should be performed 
     printf ("1) Encryption using rotation cipher given rotation amount\n");
     printf ("2) Decryption using rotation cipher given rotation amount\n");
     printf ("3) Encryption using substitution cipher given alphabet substitution\n");
     printf ("4) Decryption using substitution cipher given alphabet substitution\n");
-    //printf ("5) Decryption using rotation cipher without rotation amount\n");
-    //printf ("6) Decryption using substitution cipher without alphabet substitution\n");
     printf ("Selection: ");
 
-    scanf ("%d", &selec); 
-  
+    scanf ("%d", &selec); //reads value from user and assigns it to int selec
     
   
 
-    switch (selec) 
+    switch (selec) //switch case determines what task to perform- based on input number
     {
         case 1: //rotation encryption using a key
-            
             printf ("\nSelected 1- Rotation encryption with key.\n");
             printf ("Enter rotation key: ");
-            int keyOne=0; //rotation key initialisation
-            scanf ("%d", &keyOne); 
+            
+            int keyOne; //rotation key initialisation
+            scanf ("%d", &keyOne); //reads value from user and assigns to keyOne
 
-            FILE *input1; //linking (?) to the file 
-            input1 = fopen("task1", "r");
-            if(input1 == NULL) //if the file cannot be opened
-            {
+            FILE *input1; //declaring a pointer of type file, so file can be accessed by program
+            input1 = fopen("task1", "r"); //opening the file and assigning it to input1 to be read
+            if(input1 == NULL) //if the file cannot be opened, print an error message to avoid killing
+            {                  ///the program
                 printf("FAILED TO OPEN FILE\n");
-                return -1;
+                return -1; //returning -1 to avoid killing program
             }
             char c, d, e;
         
-            while (1) { //while the file isnt at the end 
+            while (1) { //while the file isnt at the end, follow the loop
                 
                 fscanf(input1, "%c", &c); //reading the character from the file
                 
@@ -67,27 +64,27 @@ int main () {
                 }
                 else if (c<65)  //if the char is not a letter (below ASCII 65)
                 {
-                    printf ("%c", c);
+                    printf ("%c", c); //print the char unchanged
                 }
                 else if (c>90) //if the char is not a letter (above ASCII 90)
                 {
-                    printf ("%c", c);
+                    printf ("%c", c); //print the char unchanged
                 }
                 
                 else if ((c+keyOne)<65) //if the char is not a letter (below ASCII 65)
                 {
-                    d = (c + keyOne) + 26;
+                    d = (c + keyOne) + 26; //once translated, 'loop' back around to the end of the alphabet
                     printf ("%c", d);
                 }
                 else if ((c+keyOne)>90) //if the letter is encrypted to punctuation (outside letter range)
                 {
-                    d = (c + keyOne) - 26;
+                    d = (c + keyOne) - 26; //once translated, 'loop' back around to the start of the alphabet
                     printf ("%c", d);
                 } 
                 else //only translating capital letters
                 {
-                   e = rotationOne(c, keyOne);
-                   printf ("%c", e);
+                   e = rotationOne(c, keyOne); //calling the function to translate
+                   printf ("%c", e); //printing ciphertext
 
                 }
             }
@@ -97,16 +94,16 @@ int main () {
         case 2: 
             printf ("\nSelected 2- Rotation decryption with key. \n");
             printf ("Enter rotation key: ");
-            int keyTwo=0;
-            scanf ("%d", &keyTwo); //reading key value from terminal
-        
-            FILE *input2; //opening file
-            input2 = fopen("task2", "r"); //reading file
             
+            int keyTwo=0;
+            scanf ("%d", &keyTwo); //reading key value from terminal and assigning it to int keyTwo 
+        
+            FILE *input2; //declaring a pointer of type file, so the file can be accessed by the program
+            input2 = fopen("task2", "r"); //opening the file and assigning it to input2 to be read
             if (input2 == NULL) //if the file cannot be opened due to error
             {
-                printf ("FAILED TO OPEN FILE\n");
-                return -1;
+                printf ("FAILED TO OPEN FILE\n"); //print an error message
+                return -1; //returning -1 to avoid killing program 
             }
             
             char f, g, h;
@@ -119,28 +116,28 @@ int main () {
                 {
                     break;
                 }
-                else if (f<65) //if the char is not a letter 
+                else if (f<65) //if the char is not a letter (below ASCII 65)
                 {
-                    printf ("%c", f); //something wrong with this one
+                    printf ("%c", f); //print the char unchanged
                 }
-                else if (f>90) //if the char is not a letter
+                else if (f>90) //if the char is not a letter (above ASCII 90)
                 {
-                    printf ("%c", f);
+                    printf ("%c", f); //print the char unchanged
                 }
                 else if ((f-keyTwo)<65) //if decrypted char is not a letter within range
                 {
-                    g = (f - keyTwo) + 26;
+                    g = (f - keyTwo) + 26; //once translated, 'loop' back around to end of alphabet
                     printf ("%c", g);
                 }
                 else if ((f-keyTwo)>90) //if decrypted char is not a letter within range
                 {
-                    g = (f - keyTwo) - 26;
+                    g = (f - keyTwo) - 26; //once translated, 'loop' back around to end of alphabet
                     printf ("%c", g);
                 }
                 else 
                 {
-                    h = rotationTwo(f, keyTwo); //using function to decrypt
-                    printf ("%c", h);
+                    h = rotationTwo(f, keyTwo); //calling function to decrypt
+                    printf ("%c", h); //printing plaintext 
                 } 
             }
             printf ("\n");
@@ -149,12 +146,12 @@ int main () {
         case 3: 
             printf ("\nSelected 3- Substitution encryption given a key\n");
             
-            FILE *input3;
-            input3 = fopen("task3", "r");
-            if (input3 == NULL)
+            FILE *input3; //declaring a pointer of type file, so file can be accessed by program
+            input3 = fopen("task3", "r"); //opening the file and assigning it to input3 to be read
+            if (input3 == NULL) //if the file cannot be opened due to error
             {
-                printf("FAILED TO OPEN FILE\n");
-                return -1;
+                printf("FAILED TO OPEN FILE\n"); //print an error message
+                return -1; //return -1 to avoid killing the program 
             }
             
             char i, j;
@@ -163,22 +160,22 @@ int main () {
             {
                 fscanf (input3, "%c", &i);
                 
-                if (feof(input3)==1) 
+                if (feof(input3)==1) //when the file is finished
                 {
-                    break;
+                    break; //break the loop
                 }
-                else if (i<65)
+                else if (i<65) //if the char is not a letter (below ASCII 65)
                 {
-                    printf ( "%c", i);
+                    printf ( "%c", i); //print the char unchanged
                 }
-                else if (i>90)
+                else if (i>90) //if the char is not a letter (above ASCII 90)
                 {
-                    printf ("%c", i);
+                    printf ("%c", i); //print char unchanged 
                 }
-                else
+                else // only translating capital letters
                 {
-                    j = subcipherEnc(i,j);
-                    printf ("%c", j);
+                    j = subcipherEnc(i,j); //calling function to translate char
+                    printf ("%c", j); //printing ciphertext
                 }
             }
             printf ("\n");
@@ -187,12 +184,12 @@ int main () {
         case 4: 
             printf ("\nSelected 4- Substitution decryption with key\n");
             
-            FILE *input4;
-            input4 = fopen("task4", "r");
-            if (input4 == NULL)
+            FILE *input4; //declaring a pointer of type file, so the file can be accessed 
+            input4 = fopen("task4", "r"); //opening the file and assigning it to input4 to be read
+            if (input4 == NULL) //if the file cannot be opened due to error
             {
-                printf ("FAILED TO OPEN FILE\n");
-                return -1;
+                printf ("FAILED TO OPEN FILE\n"); //print an error message 
+                return -1; //return -1 to avoid killing program
             }
             
             char k, l;
@@ -201,22 +198,22 @@ int main () {
             {
                 fscanf (input4, "%c", &k);
                 
-                if (feof(input4)==1) 
+                if (feof(input4)==1) //when the file is finished 
                 {
-                    break;
+                    break; //break the loop
                 }
-                else if (k<65)
+                else if (k<65) //if the char is not a letter (below ASCII 65)
                 {
-                    printf ( "%c", k);
+                    printf ( "%c", k); //print the char unchanged
                 }
-                else if (k>90)
+                else if (k>90) //if the char is not a letter (above ASCII 90)
                 {
-                    printf ("%c", k);
+                    printf ("%c", k); //print the char unchanged
                 }
-                else
+                else //only translating capital letters
                 {
-                    l = subcipherDec(k,l);
-                    printf ("%c", l);
+                    l = subcipherDec(k,l); //calling the function to translate
+                    printf ("%c", l); //printing plaintext
                 } 
             }
 
@@ -224,7 +221,7 @@ int main () {
             break; 
             
         default: 
-            printf ("\nunknown option\n");
+            printf ("\nunknown option\n"); //if entered value isnt an option, default is selected
             } //closing switch case
             } //closing int main
             
@@ -341,7 +338,7 @@ KEY. THE RETURN VALUE IS THE REASSIGNED LETTER, WHICH IS THE CIPHERTEXT.  */
         }
 
                 return i;
-        }
+    }
         
 /*THIS IS THE FUNCTION FOR TASK 4. THE INPUT OF THIS FUNCTION IS THE CIPHERTEXT CHAR READ FROM THE FILE.
 THE CHARACTER MUST BE OF DATA TYPE CHAR. THE KEY IS HARD CODED IN THE FUNCTION. THE FUNCTION TAKES THE CHAR
@@ -433,4 +430,4 @@ KEY. THE RETURN VALUE IS THE REASSIGNED LETTER, WHICH IS THE PLAINTEXT.  */
         }
 
                 return k;
-        } 
+    } 
