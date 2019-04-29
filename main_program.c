@@ -61,7 +61,7 @@ int main () {
                 if(feof(input1)==1) //when the file is finished, exit the loop 
                 {
                     break;
-                }
+                } 
                 else if (c<65)  //if the char is not a letter (below ASCII 65)
                 {
                     printf ("%c", c); //print the char unchanged
